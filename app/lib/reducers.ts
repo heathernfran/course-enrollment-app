@@ -2,6 +2,7 @@ import type { CoursesAction, CoursesState } from "@/app/lib/definitions";
 
 export const coursesInitialState = {
   saved: [],
+  selectedCourseId: null,
 };
 
 export function coursesReducer(state: CoursesState, action: CoursesAction) {
@@ -18,6 +19,13 @@ export function coursesReducer(state: CoursesState, action: CoursesAction) {
       return {
         ...state,
         saved: nextSaved,
+      };
+    }
+    case "UPDATE_SELECTED_COURSE_ID": {
+      const nextCourseId = action.id;
+      return {
+        ...state,
+        selectedCourseId: nextCourseId,
       };
     }
     default: {

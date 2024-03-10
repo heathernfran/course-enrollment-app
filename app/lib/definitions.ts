@@ -28,6 +28,7 @@ export type Course = {
 
 export type CoursesState = {
   saved: number[];
+  selectedCourseId: number | null;
 };
 
 interface SaveCourse {
@@ -38,7 +39,11 @@ interface UnsaveCourse {
   type: "UNSAVE_COURSE";
   id: number;
 }
-export type CoursesAction = SaveCourse | UnsaveCourse;
+interface UpdateSelectCourseId {
+  type: "UPDATE_SELECTED_COURSE_ID";
+  id: number;
+}
+export type CoursesAction = SaveCourse | UnsaveCourse | UpdateSelectCourseId;
 
 export type CoursesContextType = {
   state: CoursesState;
