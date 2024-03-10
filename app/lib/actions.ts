@@ -1,11 +1,15 @@
 "use server";
 
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function getCoursesById(id: number) {
   try {
     const response = await fetch(
-      `${process.env.URL}/api/courses/${id}/schedule`
+      `${getProtocolHost()}/api/courses/${id}/schedule`,
+      {
+        method: "GET",
+      }
     );
     if (!response.ok) {
       throw new Error(`Network error`);
@@ -20,7 +24,7 @@ export async function getCoursesById(id: number) {
 export async function postSaveCourse(id: number) {
   try {
     const response = await fetch(
-      `${process.env.URL}/api/profile/saved/courses/${id}`,
+      `${getProtocolHost()}/api/profile/saved/courses/${id}`,
       {
         method: "POST",
       }
@@ -34,7 +38,7 @@ export async function postSaveCourse(id: number) {
 export async function deleteSavedCourse(id: number) {
   try {
     const response = await fetch(
-      `${process.env.URL}/api/profile/saved/courses/${id}`,
+      `${getProtocolHost()}/api/profile/saved/courses/${id}`,
       { method: "DELETE" }
     );
     return await response.json();
@@ -46,7 +50,8 @@ export async function deleteSavedCourse(id: number) {
 export async function getSavedCourses() {
   try {
     const response = await fetch(
-      `${process.env.URL}/api/profile/saved/courses`
+      `${getProtocolHost()}/api/profile/saved/courses`,
+      { method: "GET" }
     );
     if (!response.ok) {
       throw new Error(`Network error in response`);
@@ -65,6 +70,19 @@ export async function postEnrollment(id: number) {
   await simulateDelay(1000);
 
   redirect(`/courses/${id}/enroll`);
+}
+
+function getHost() {
+  return headers().get("host");
+}
+
+function getProtocol() {
+  return process.env.NODE_ENV === "development" ? "http" : "https";
+  // return "https";
+}
+
+function getProtocolHost() {
+  return `${getProtocol()}://${getHost()}`;
 }
 
 function simulateDelay(milliseconds: number) {
