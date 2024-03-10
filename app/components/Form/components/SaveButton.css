@@ -1,0 +1,3 @@
+.save-button {
+  @apply text-blue-50 border-white hover:underline focus:border-blue-50 active:bg-blue-50;
+}

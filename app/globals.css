@@ -24,6 +24,10 @@
   h1 {
     @apply text-title-large font-semibold;
   }
+
+  button {
+    @apply block mb-4 p-1 w-full border-4 rounded-md;
+  }
 }
 
 @layer utilities {
