@@ -80,7 +80,9 @@ export async function postEnrollment(id: number) {
 }
 
 function getProtocol() {
-  return process.env.VERCEL_ENV === "development" ? "http://" : "https://";
+  return process.env.NEXT_PUBLIC_VERCEL_ENV === "development"
+    ? "http://"
+    : "https://";
 }
 
 function simulateDelay(milliseconds: number) {
