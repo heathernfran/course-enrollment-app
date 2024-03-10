@@ -1,5 +1,8 @@
 import { useCourses } from "@/app/context/CoursesContext";
 import { deleteSavedCourse, postSaveCourse } from "@/app/lib/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark as regularBookmark } from "@fortawesome/free-regular-svg-icons/faBookmark";
+import { faBookmark as solidBookmark } from "@fortawesome/free-solid-svg-icons/faBookmark";
 import "./SaveButton.css";
 
 export default function SaveButton() {
@@ -28,6 +31,10 @@ export default function SaveButton() {
       onClick={handleSave}
       className="save-button"
     >
+      <FontAwesomeIcon
+        icon={isSavedCourse() ? solidBookmark : regularBookmark}
+        className="mx-2"
+      />
       {isSavedCourse() ? `Unsave Course` : `Save Course`}
     </button>
   );
