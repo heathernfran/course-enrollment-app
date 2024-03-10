@@ -1,12 +1,13 @@
 "use server";
 
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function getCoursesById(id: number) {
   try {
     const response = await fetch(
-      `${process.env.VERCEL_URL}/api/courses/${id}/schedule`,
+      `${getProtocol()}${
+        process.env.NEXT_PUBLIC_VERCEL_URL
+      }/api/courses/${id}/schedule`,
       {
         method: "GET",
       }
@@ -24,7 +25,9 @@ export async function getCoursesById(id: number) {
 export async function postSaveCourse(id: number) {
   try {
     const response = await fetch(
-      `${process.env.VERCEL_URL}/api/profile/saved/courses/${id}`,
+      `${getProtocol()}${
+        process.env.NEXT_PUBLIC_VERCEL_URL
+      }/api/profile/saved/courses/${id}`,
       {
         method: "POST",
       }
@@ -38,7 +41,9 @@ export async function postSaveCourse(id: number) {
 export async function deleteSavedCourse(id: number) {
   try {
     const response = await fetch(
-      `${process.env.VERCEL_URL}/api/profile/saved/courses/${id}`,
+      `${getProtocol()}${
+        process.env.NEXT_PUBLIC_VERCEL_URL
+      }/api/profile/saved/courses/${id}`,
       { method: "DELETE" }
     );
     return await response.json();
@@ -50,7 +55,9 @@ export async function deleteSavedCourse(id: number) {
 export async function getSavedCourses() {
   try {
     const response = await fetch(
-      `${process.env.VERCEL_URL}/api/profile/saved/courses`,
+      `${getProtocol()}${
+        process.env.NEXT_PUBLIC_VERCEL_URL
+      }/api/profile/saved/courses`,
       { method: "GET" }
     );
     if (!response.ok) {
@@ -70,6 +77,10 @@ export async function postEnrollment(id: number) {
   await simulateDelay(1000);
 
   redirect(`/courses/${id}/enroll`);
+}
+
+function getProtocol() {
+  return process.env.VERCEL_ENV === "development" ? "http://" : "https://";
 }
 
 function simulateDelay(milliseconds: number) {
