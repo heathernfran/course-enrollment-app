@@ -1,3 +1,5 @@
+import { type Dispatch } from "react";
+
 export type Timestamps = number[][];
 
 export type Instructor = {
@@ -37,3 +39,8 @@ interface UnsaveCourse {
   id: number;
 }
 export type CoursesAction = SaveCourse | UnsaveCourse;
+
+export type CoursesContextType = {
+  state: CoursesState;
+  dispatch: Dispatch<CoursesAction>;
+};
