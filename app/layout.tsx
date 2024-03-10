@@ -1,3 +1,4 @@
+import Nav from "@/app/components/Nav";
 import CoursesProvider from "@/app/context/CoursesContext";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <CoursesProvider>
+          <Nav />
           <main className="flex flex-col items-center">{children}</main>
         </CoursesProvider>
       </body>
