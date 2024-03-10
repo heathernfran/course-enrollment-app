@@ -23,3 +23,17 @@ export type Course = {
   location: Location;
   pricing: Pricing;
 };
+
+export type CoursesState = {
+  saved: number[];
+};
+
+interface SaveCourse {
+  type: "SAVE_COURSE";
+  id: number;
+}
+interface UnsaveCourse {
+  type: "UNSAVE_COURSE";
+  id: number;
+}
+export type CoursesAction = SaveCourse | UnsaveCourse;
