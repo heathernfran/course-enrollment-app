@@ -40,3 +40,17 @@ export async function deleteSavedCourse(id: number) {
     throw new Error(`Failed to deleteSavedCourse: ${err}`);
   }
 }
+
+export async function getSavedCourses() {
+  try {
+    const response = await fetch(
+      `${process.env.URL}/api/profile/saved/courses`
+    );
+    if (!response.ok) {
+      throw new Error(`Network error in response`);
+    }
+    return response.json() || [];
+  } catch (err) {
+    throw new Error(`Failed to get saved courses: ${err}`);
+  }
+}
