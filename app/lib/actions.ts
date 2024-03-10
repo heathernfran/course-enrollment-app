@@ -1,5 +1,7 @@
 "use server";
 
+import { redirect } from "next/navigation";
+
 export async function getCoursesById(id: number) {
   try {
     const response = await fetch(
@@ -51,6 +53,20 @@ export async function getSavedCourses() {
     }
     return response.json() || [];
   } catch (err) {
-    throw new Error(`Failed to get saved courses: ${err}`);
+    throw new Error(`Failed to getSavedCourses: ${err}`);
   }
+}
+
+export async function postEnrollment(id: number) {
+  // The delay is only to test latency in the API call, before redirecting to
+  // the enrollment confirmation page.
+  // Note: I did not see an API contract for posting course enrollments, and
+  // therefore did not stub out an API handler for this.
+  await simulateDelay(1000);
+
+  redirect(`/courses/${id}/enroll`);
+}
+
+function simulateDelay(milliseconds: number) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
