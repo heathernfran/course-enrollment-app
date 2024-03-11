@@ -2,6 +2,7 @@ import Nav from "@/app/components/Nav";
 import CoursesProvider from "@/app/context/CoursesContext";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
