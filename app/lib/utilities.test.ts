@@ -41,7 +41,15 @@ describe("formatTime()", () => {
   test("returns the time formatted for the locale in the America/New_York timezone", () => {
     const timestamp = 1713564000;
     const timezone = "America/New_York";
-    const result = "6:00 PM";
+    const result = "6 pm";
+
+    expect(formatTime(timestamp, timezone, MOCK_LOCALE)).toBe(result);
+  });
+
+  test("returns the time formatted for the locale in the America/New_York timezone with minutes", () => {
+    const timestamp = 1711391400;
+    const timezone = "America/New_York";
+    const result = "2:30 pm";
 
     expect(formatTime(timestamp, timezone, MOCK_LOCALE)).toBe(result);
   });
@@ -49,7 +57,15 @@ describe("formatTime()", () => {
   test("returns the time formatted for the locale in the America/Los_Angeles timezone", () => {
     const timestamp = 1713564000;
     const timezone = "America/Los_Angeles";
-    const result = "3:00 PM";
+    const result = "3 pm";
+
+    expect(formatTime(timestamp, timezone, MOCK_LOCALE)).toBe(result);
+  });
+
+  test("returns the time formatted for the locale in the America/Denver timezone with minutes", () => {
+    const timestamp = 1711391400;
+    const timezone = "America/Denver";
+    const result = "12:30 pm";
 
     expect(formatTime(timestamp, timezone, MOCK_LOCALE)).toBe(result);
   });

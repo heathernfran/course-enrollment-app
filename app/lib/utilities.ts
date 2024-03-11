@@ -59,7 +59,10 @@ export function formatTime(
   };
 
   const date = getNewDate(timestamp);
-  const timeWithOptions = date.toLocaleTimeString(locale, options);
+  const timeWithOptions = date
+    .toLocaleTimeString(locale, options)
+    .toLocaleLowerCase()
+    .replace(":00", "");
 
   return timeWithOptions;
 }
