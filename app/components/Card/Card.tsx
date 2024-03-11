@@ -13,12 +13,8 @@ export default function Card({ course }: { course: Course }) {
   const { dates, id, location, instructors, pricing } = course;
 
   function handleChange() {
-    // setIsChecked(!isChecked);
-    // onChange(id);
     dispatch({ type: "UPDATE_SELECTED_COURSE_ID", id });
   }
-
-  // console.log("id === state.selectedCourseId", id === state.selectedCourseId);
 
   return (
     <div

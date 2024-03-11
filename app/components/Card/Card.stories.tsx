@@ -1,10 +1,18 @@
+import CoursesProvider from "@/app/context/CoursesContext";
+import { courses } from "@/app/lib/data";
 import type { Meta, StoryObj } from "@storybook/react";
 import Card from "./Card";
-import { courses } from "@/app/lib/data";
 
 const meta = {
   title: "Courses/Card",
   component: Card,
+  decorators: [
+    (Story) => (
+      <CoursesProvider>
+        <Story />
+      </CoursesProvider>
+    ),
+  ],
 } satisfies Meta<typeof Card>;
 
 export default meta;
